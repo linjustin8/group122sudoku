@@ -1,4 +1,7 @@
 class Cell:
     def __init__(self, value, row, col, screen):
-        pass
+        self.value = value
+        self.row = row
+        self.col = col
+        self.screen = screen
 
