@@ -46,7 +46,7 @@ class SudokuGenerator:
 	Return: None
     '''
     def print_board(self):
-        for array in board:
+        for array in self.board:
             for num in array:
                 print(num, end=" ")
             print()
@@ -98,7 +98,11 @@ class SudokuGenerator:
 	Return: boolean
     '''
     def valid_in_box(self, row_start, col_start, num):
-        pass
+        for i in range(3):
+            for j in range(3):
+                if self.board[row_start + i][col_start +j] == num:
+                    return False
+        return True
     
     '''
     Determines if it is valid to enter num at (row, col) in the board
