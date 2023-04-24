@@ -7,7 +7,7 @@ class Board:
         self.difficulty = difficulty
     def draw(self):
         # draw horizontal lines
-        for i in range(1,9):
+        for i in range(1, 9):
             if i % 3 == 0:
                 pygame.draw.line(self.screen,
                                  (0, 0, 0),
@@ -20,7 +20,7 @@ class Board:
                                  (0, i * 80),
                                  (720, i * 80))
         # draw vertical lines
-        for i in range(1,9):
+        for i in range(1, 9):
             if i % 3 == 0:
                 pygame.draw.line(self.screen,
                                  (0, 0, 0),
