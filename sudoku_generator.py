@@ -149,7 +149,10 @@ class SudokuGenerator:
 	Return: None
     '''
     def fill_box(self, row_start, col_start):
-        pass
+        for i in range(3):
+            for j in range(3):
+                pass
+
     
     '''
     Fills the three boxes along the main diagonal of the board
