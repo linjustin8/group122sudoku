@@ -151,7 +151,13 @@ class SudokuGenerator:
     def fill_box(self, row_start, col_start):
         for i in range(3):
             for j in range(3):
-                pass
+                notValid = True
+                while(notValid):
+                    insert = random.randint(1,9)
+                    if(self.is_valid(row_start+i,col_start+j,insert) and\
+                    self.valid_in_box(row_start, col_start, insert)):
+                        notValid=False
+                self.board[row_start+i][col_start+j] = insert
 
     
     '''
@@ -162,7 +168,16 @@ class SudokuGenerator:
 	Return: None
     '''
     def fill_diagonal(self):
-        pass
+        for i in range(3):
+            placement = 0
+            not_valid = True
+            while (not_valid):
+                insert = random.randint(1, 9)
+                if (self.is_valid(placement, placement, insert) and \
+                self.valid_in_box(placement, placement, insert)):
+                    not_valid = False
+            self.board[placement][placement] = insert
+            placement += 3
 
     '''
     DO NOT CHANGE
