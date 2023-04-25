@@ -178,26 +178,24 @@ def main():
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x, y = event.pos
-                    pos = sudoku.click(x,y)
-                    sudoku.select(pos[0], pos[1])
-                    sudoku.draw()
-                    screen.blit(reset_surface, reset_rectangle)
-                    screen.blit(restart_surface, restart_rectangle)
-                    screen.blit(exit_surface, exit_rectangle)
+                    if y < 720:
+                        pos = sudoku.click(x,y)
+                        sudoku.select(pos[0], pos[1])
+                        sudoku.draw()
+                        screen.blit(reset_surface, reset_rectangle)
+                        screen.blit(restart_surface, restart_rectangle)
+                        screen.blit(exit_surface, exit_rectangle)
+                    else:
+                        if reset_rectangle.collidepoint(event.pos):
+                            pass
+                        if restart_rectangle.collidepoint(event.pos):
+                            # Source: stack overflow - https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input
+                            subprocess.call(sys.executable + ' "' + os.path.realpath(__file__) + '"')
+                            pygame.quit()
 
-
-                    if pos != None:
-                         sudoku.draw_square(pos[0], pos[1])
-                    elif reset_rectangle.collidepoint(event.pos):
-                        pass
-                    elif restart_rectangle.collidepoint(event.pos):
-                        # Source: stack overflow - https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input
-                        subprocess.call(sys.executable + ' "' + os.path.realpath(__file__) + '"')
-                        pygame.quit()
-
-                    elif exit_rectangle.collidepoint(event.pos):
-                        pygame.quit()
-                        sys.exit()
+                        if exit_rectangle.collidepoint(event.pos):
+                            pygame.quit()
+                            sys.exit()
 
             pygame.display.update()
 
