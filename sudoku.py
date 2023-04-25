@@ -121,6 +121,8 @@ def draw_progress_menu():
                     sys.exit()
         pygame.display.update()
 
+def reset_game(sudoku):
+    pass
 def game_end():
     pass
 
