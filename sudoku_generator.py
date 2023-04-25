@@ -1,5 +1,4 @@
 import math,random
-print()
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
 https://www.geeksforgeeks.org/program-sudoku-generator/
@@ -22,11 +21,11 @@ class SudokuGenerator:
 	Return:
 	None
     '''
-    def __init__(self, removed_cells, row_length = 9):
+    def __init__(self, row_length, removed_cells):
         self.row_length = row_length
         self.removed_cells = removed_cells
         self.board = [[int() for i in range(self.row_length)] for j in range(self.row_length)]
-        self.box_length = math.sqrt(row_length)
+        self.box_length = int(math.sqrt(row_length))
 
 
     '''
@@ -36,7 +35,7 @@ class SudokuGenerator:
 	Return: list[list]
     '''
     def get_board(self):
-        return self.board()
+        return self.board
 
     '''
 	Displays the board to the console
@@ -168,8 +167,8 @@ class SudokuGenerator:
 	Return: None
     '''
     def fill_diagonal(self):
+        placement = 0
         for i in range(3):
-            placement = 0
             not_valid = True
             while (not_valid):
                 insert = random.randint(1, 9)
@@ -243,14 +242,15 @@ class SudokuGenerator:
 	Return: None
     '''
     def remove_cells(self):
-        remove_x = random.randint(0,9)
-        remove_y= random.randint(0,9)
-        while True:
-            if(self.board[remove_x][remove_y]==0):
-                continue
-            else:
-               self.board[remove_x][remove_y] = 0
-               break
+        for i in range(self.removed_cells):
+            while True:
+                remove_x = random.randint(0, 9)
+                remove_y = random.randint(0, 9)
+                if(self.board[remove_x][remove_y]==0):
+                    continue
+                else:
+                   self.board[remove_x][remove_y] = 0
+                   break
 
 '''
 DO NOT CHANGE
