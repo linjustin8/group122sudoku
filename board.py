@@ -46,6 +46,8 @@ class Board:
         self.selected_x = row
         self.selected_y = col
 
+
+
     def click(self, x, y):
         row = y // 80
         col = x // 80
