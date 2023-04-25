@@ -17,6 +17,7 @@ class Board:
 
     def draw(self):
         # draw horizontal lines
+        self.screen.fill((191, 222, 217))
         for i in range(1, 10):
             if i % 3 == 0:
                 pygame.draw.line(self.screen,
@@ -41,6 +42,7 @@ class Board:
                                 (0,0,0),
                                 (i * 80, 0),
                                 (i * 80, 720))
+        pygame.draw.rect(self.screen, (255, 0, 0), (self.selected_y * 80, self.selected_x * 80, 80, 80), 5)
 
     def select(self, row, col):
         self.selected_x = row
