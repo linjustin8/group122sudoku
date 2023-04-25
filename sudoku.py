@@ -185,10 +185,18 @@ def main():
                         screen.blit(reset_surface, reset_rectangle)
                         screen.blit(restart_surface, restart_rectangle)
                         screen.blit(exit_surface, exit_rectangle)
+
+
                     else:
                         if reset_rectangle.collidepoint(event.pos):
-                            sudoku.board = sudoku.original                  #Check later
-                            continue
+                            sudoku.board = sudoku.original
+                            sudoku.reset_to_original()
+                            sudoku.draw()
+                            screen.blit(reset_surface, reset_rectangle)
+                            screen.blit(restart_surface, restart_rectangle)
+                            screen.blit(exit_surface, exit_rectangle)
+
+
                         if restart_rectangle.collidepoint(event.pos):
                             # Source: stack overflow - https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input
                             subprocess.call(sys.executable + ' "' + os.path.realpath(__file__) + '"')
@@ -223,6 +231,7 @@ def main():
 
             if sketch != None and sudoku.board[pos[0]][pos[1]] == 0:
                 sudoku.sketch(sketch)
+
 
 
 
