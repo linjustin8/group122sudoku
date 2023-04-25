@@ -121,49 +121,8 @@ def draw_progress_menu():
                     sys.exit()
         pygame.display.update()
 
-def game_end(sudoku):
-    title_font = pygame.font.SysFont("arialblack", 50)
-    button_font = pygame.font.SysFont("arialblack", 25)
-
-    if(sudoku.is_full()):
-        if(sudoku.check_board()):#if wins sudoku game
-            draw_text("Game Won!", title_font, (0, 0, 0), 150, 100)
-            exit_button = button_font.render("EXIT", 0, (0, 0, 0))
-            exit_surface = pygame.Surface((exit_button.get_size()[0] + 20,
-                                              exit_button.get_size()[1] + 20))
-            exit_surface.fill((204, 216, 217))
-            exit_surface.blit(exit_button, (10, 10))
-            exit_rectangle = exit_surface.get_rect(
-                center=(360, 500))
-            while True:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        sys.exit()
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        if exit_rectangle.collidepoint(event.pos):
-                            pygame.quit()
-                            sys.exit()
-                pygame.display.update()
-
-        else:#if loses sudoku game
-            draw_text("Game Over!", title_font, (0, 0, 0), 150, 100)
-            restart_button = button_font.render("RESTART", 0, (0, 0, 0))
-            restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
-                                              restart_button.get_size()[1] + 20))
-            restart_surface.fill((204, 216, 217))
-            restart_surface.blit(restart_button, (10, 10))
-            restart_rectangle = restart_surface.get_rect(
-                center=(360, 500))
-            while True:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        sys.exit()
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        if restart_rectangle.collidepoint(event.pos):
-                            pass
-                pygame.display.update()
+def game_end():
+    pass
 
 
 def main():
