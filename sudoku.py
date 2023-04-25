@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, os, subprocess
 from board import Board
 from sudoku_generator import SudokuGenerator
 from cell import Cell
@@ -103,14 +103,23 @@ def draw_progress_menu():
     screen.blit(restart_surface, restart_rectangle)
     screen.blit(exit_surface, exit_rectangle)
 
-def progress_button_operations():
-
-    if easy_rectangle.collidepoint(event.pos):
-        return 30  # Returns 30 for Easy
-    elif medium_rectangle.collidepoint(event.pos):
-        return 40  # Returns 40 For Medium
-    elif hard_rectangle.collidepoint(event.pos):
-        return 50  # Returns 50 for Hard
+    # button operations
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if reset_rectangle.collidepoint(event.pos):
+                    pass
+                elif restart_rectangle.collidepoint(event.pos):
+                    # Source: stack overflow - https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input
+                    subprocess.call(sys.executable + ' "' + os.path.realpath(__file__) + '"')
+                    pygame.quit()
+                elif exit_rectangle.collidepoint(event.pos):
+                    pygame.quit()
+                    sys.exit()
+        pygame.display.update()
 
 def game_end():
     pass
