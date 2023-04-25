@@ -59,11 +59,11 @@ def start_menu(screen):
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rectangle.collidepoint(event.pos):
-                    return 1 # Returns 1 for Easy
+                    return 30 # Returns 30 for Easy
                 elif medium_rectangle.collidepoint(event.pos):
-                    return 2 # Returns 2 For Medium
+                    return 40 # Returns 40 For Medium
                 elif hard_rectangle.collidepoint(event.pos):
-                    return 3 # Returns 3 for Hard
+                    return 50 # Returns 50 for Hard
         pygame.display.update()
 
 
