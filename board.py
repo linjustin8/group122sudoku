@@ -98,4 +98,9 @@ class Board:
                     return False
         return True
 
+    def draw_square(self, row, col):
+        fnt = pygame.font.SysFont("arial", 40)
+        pygame.draw.rect(self.screen, (255, 0, 0), (col * 80, row * 80, 80, 80), 5 )
+
+
 

@@ -186,16 +186,22 @@ def main():
                     cell = Cell(value, row, col, screen)
                     cell.draw()
 
-        draw_progress_menu()
+
         while True:
+            #draw_progress_menu()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    x, y = event.pos
+                    row, col = sudoku.click(x,y)
+                    print(row, col)
+                    sudoku.draw_square(row, col)
 
-                    print(event.pos)
+
+
 
             pygame.display.update()
 
