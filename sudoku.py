@@ -195,10 +195,13 @@ def main():
                     sys.exit()
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    x, y = event.pos
-                    row, col = sudoku.click(x,y)
-                    print(row, col)
-                    sudoku.draw_square(row, col)
+                    # x, y = event.pos
+                    # pos = sudoku.click(x,y)
+                    # sudoku.select(pos[0], pos[1])
+                    # while pos[0] == sudoku.selected_y and pos[1] == sudoku.selected_x:
+                    #     if pos != None:
+                    #         sudoku.draw_square(pos[0], pos[1])
+                    #         continue
 
 
 

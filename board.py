@@ -51,7 +51,7 @@ class Board:
     def click(self, x, y):
         row = y // 80
         col = x // 80
-        if(row>9):
+        if(row>=9):
             return None
         return (row, col)
 
@@ -99,7 +99,7 @@ class Board:
         return True
 
     def draw_square(self, row, col):
-        fnt = pygame.font.SysFont("arial", 40)
+        # fnt = pygame.font.SysFont("arial", 40)
         pygame.draw.rect(self.screen, (255, 0, 0), (col * 80, row * 80, 80, 80), 5 )
 
 
