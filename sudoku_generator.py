@@ -22,7 +22,7 @@ class SudokuGenerator:
 	None
     '''
     def __init__(self, row_length, removed_cells):
-        self.row_length = row_length
+        self.row_length = 9
         self.removed_cells = removed_cells
         self.board = [[int() for i in range(self.row_length)] for j in range(self.row_length)]
         self.box_length = int(math.sqrt(row_length))
@@ -120,6 +120,7 @@ class SudokuGenerator:
             start_row = 3
         else:
             start_row = 6
+
         if col <= 2:
             start_col = 0
         elif col <= 5:
@@ -169,13 +170,7 @@ class SudokuGenerator:
     def fill_diagonal(self):
         placement = 0
         for i in range(3):
-            not_valid = True
-            while (not_valid):
-                insert = random.randint(1, 9)
-                if (self.is_valid(placement, placement, insert) and \
-                self.valid_in_box(placement, placement, insert)):
-                    not_valid = False
-            self.board[placement][placement] = insert
+            self.fill_box(placement,placement)
             placement += 3
 
     '''
@@ -244,8 +239,8 @@ class SudokuGenerator:
     def remove_cells(self):
         for i in range(self.removed_cells):
             while True:
-                remove_x = random.randint(0, 9)
-                remove_y = random.randint(0, 9)
+                remove_x = random.randint(0, 8)
+                remove_y = random.randint(0, 8)
                 if(self.board[remove_x][remove_y]==0):
                     continue
                 else:

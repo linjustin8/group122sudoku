@@ -31,3 +31,34 @@ class Board:
                                 (0,0,0),
                                 (i * 80, 0),
                                 (i * 80, 720))
+
+    def select(self, row, col):
+        pass
+
+    def click(self, x, y):
+        pass
+
+    def clear(self):
+        pass
+
+    def sketch(self, value):
+        pass
+
+    def place_number(self, value):
+        pass
+
+    def reset_to_original(self):
+        pass
+
+    def if_full(self):
+        pass
+
+    def update_board(self):
+        pass
+
+    def find_empty(self):
+        pass
+
+    def check_board(self):
+        pass
+

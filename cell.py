@@ -9,3 +9,11 @@ class Cell:
         self.col = col
         self.screen = pygame.display.set_mode(())
 
+    def set_cell_value(self, value):
+        pass
+
+    def set_sketched_value(self, value):
+        pass
+
+    def draw(self):
+        pass
