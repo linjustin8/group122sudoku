@@ -1,4 +1,8 @@
 import pygame
+from cell import Cell
+from sudoku_generator import SudokuGenerator
+
+
 class Board:
     def __init__(self, width, height, screen, difficulty):
         self.screen = screen

@@ -108,6 +108,14 @@ while True:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             x, y = event.pos
-            print(Board.click(x, y))
+            print(sudoku_board.click(x, y))
+
 
     pygame.display.update()
+
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()
