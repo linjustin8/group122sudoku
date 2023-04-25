@@ -181,12 +181,10 @@ def main():
                     pos = sudoku.click(x,y)
                     sudoku.select(pos[0], pos[1])
                     sudoku.draw()
-                    for row in range(9):
-                        for col in range(9):
-                            value = str(sudoku.board[row][col])
-                            if value != '0':
-                                cell = Cell(value, row, col, screen)
-                                cell.draw()
+                    screen.blit(reset_surface, reset_rectangle)
+                    screen.blit(restart_surface, restart_rectangle)
+                    screen.blit(exit_surface, exit_rectangle)
+
 
                     if pos != None:
                          sudoku.draw_square(pos[0], pos[1])

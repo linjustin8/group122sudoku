@@ -42,6 +42,12 @@ class Board:
                                 (0,0,0),
                                 (i * 80, 0),
                                 (i * 80, 720))
+        for row in range(9):
+            for col in range(9):
+                value = str(self.board[row][col])
+                if value != '0':
+                    cell = Cell(value, row, col, self.screen)
+                    cell.draw()
         pygame.draw.rect(self.screen, (255, 0, 0), (self.selected_y * 80, self.selected_x * 80, 80, 80), 5)
 
     def select(self, row, col):
