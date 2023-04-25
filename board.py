@@ -42,7 +42,7 @@ class Board:
                                 (i * 80, 0),
                                 (i * 80, 720))
 
-    def select(self, row, col): #unfinsihed and might need to do some drawing shit
+    def select(self, row, col):
         self.selected_x = row
         self.selected_y = col
 
@@ -57,10 +57,10 @@ class Board:
         self.cells[self.selected_x][self.selected_y].set_cell_value(0)
 
     def sketch(self, value):
-        pass
+        self.cells[self.selected_x][self.selected_y].set_sketched_value(value)
 
     def place_number(self, value):
-        pass
+        self.cells[self.selected_x][self.selected_y].set_cell_value(value)
 
     def reset_to_original(self):
         self.cells = [[Cell(self.original[i][j], i, j, self.screen) for j in range(9)]for i in range(9)]
