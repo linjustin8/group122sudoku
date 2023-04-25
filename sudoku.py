@@ -103,21 +103,14 @@ def draw_progress_menu():
     screen.blit(restart_surface, restart_rectangle)
     screen.blit(exit_surface, exit_rectangle)
 
-    #button operations
-    # while True:
-    #     for event in pygame.event.get():
-    #         if event.type == pygame.QUIT:
-    #             pygame.quit()
-    #             sys.exit()
-    #         if event.type == pygame.MOUSEBUTTONDOWN:
-    #             if reset_rectangle.collidepoint(event.pos):
-    #                 pass
-    #             elif restart_rectangle.collidepoint(event.pos):
-    #                 game_loop = True
-    #             elif exit_rectangle.collidepoint(event.pos):
-    #                 pygame.quit()
-    #                 sys.exit()
-    #     pygame.display.update()
+def progress_button_operations():
+
+    if easy_rectangle.collidepoint(event.pos):
+        return 30  # Returns 30 for Easy
+    elif medium_rectangle.collidepoint(event.pos):
+        return 40  # Returns 40 For Medium
+    elif hard_rectangle.collidepoint(event.pos):
+        return 50  # Returns 50 for Hard
 
 def game_end():
     pass
