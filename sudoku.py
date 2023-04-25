@@ -93,31 +93,31 @@ def draw_progress_menu():
 
     #create button backgrounds
     reset_rectangle = reset_surface.get_rect(
-        center=(220, 500))
+        center=(220, 760))
     restart_rectangle = restart_surface.get_rect(
-        center=(360, 500))
+        center=(360, 760))
     exit_rectangle = exit_surface.get_rect(
-        center=(500, 500))
+        center=(500, 760))
 
     screen.blit(reset_surface, reset_rectangle)
     screen.blit(restart_surface, restart_rectangle)
     screen.blit(exit_surface, exit_rectangle)
 
     #button operations
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if reset_rectangle.collidepoint(event.pos):
-                    pass
-                elif restart_rectangle.collidepoint(event.pos):
-                    game_loop = True
-                elif exit_rectangle.collidepoint(event.pos):
-                    pygame.quit()
-                    sys.exit()
-        pygame.display.update()
+    # while True:
+    #     for event in pygame.event.get():
+    #         if event.type == pygame.QUIT:
+    #             pygame.quit()
+    #             sys.exit()
+    #         if event.type == pygame.MOUSEBUTTONDOWN:
+    #             if reset_rectangle.collidepoint(event.pos):
+    #                 pass
+    #             elif restart_rectangle.collidepoint(event.pos):
+    #                 game_loop = True
+    #             elif exit_rectangle.collidepoint(event.pos):
+    #                 pygame.quit()
+    #                 sys.exit()
+    #     pygame.display.update()
 
 def game_end():
     pass
@@ -153,8 +153,8 @@ def main():
                     sys.exit()
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    x, y = event.pos
-                    print(x, y)
+
+                    print(event.pos)
 
             pygame.display.update()
 
