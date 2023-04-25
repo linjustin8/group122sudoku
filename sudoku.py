@@ -69,58 +69,6 @@ def start_menu(screen):
                     return 50 # Returns 50 for Hard
         pygame.display.update()
 
-def draw_progress_menu():
-    #initialize buttons and button font
-    button_font = pygame.font.SysFont("arialblack", 25)
-    reset_button = button_font.render("RESET", 0, (0, 0, 0))
-    restart_button = button_font.render("RESTART", 0, (0, 0, 0))
-    exit_button = button_font.render("EXIT", 0, (0, 0, 0))
-
-    reset_surface = pygame.Surface((reset_button.get_size()[0] + 20,
-                                   reset_button.get_size()[1] + 20))
-    reset_surface.fill((204, 216, 217))
-    reset_surface.blit(reset_button, (10, 10))
-
-    restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
-                                     restart_button.get_size()[1] + 20))
-    restart_surface.fill((204, 216, 217))
-    restart_surface.blit(restart_button, (10, 10))
-
-    exit_surface = pygame.Surface((exit_button.get_size()[0] + 20,
-                                   exit_button.get_size()[1] + 20))
-    exit_surface.fill((204, 216, 217))
-    exit_surface.blit(exit_button, (10, 10))
-
-    #create button backgrounds
-    reset_rectangle = reset_surface.get_rect(
-        center=(220, 760))
-    restart_rectangle = restart_surface.get_rect(
-        center=(360, 760))
-    exit_rectangle = exit_surface.get_rect(
-        center=(500, 760))
-
-    screen.blit(reset_surface, reset_rectangle)
-    screen.blit(restart_surface, restart_rectangle)
-    screen.blit(exit_surface, exit_rectangle)
-
-    # button operations
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if reset_rectangle.collidepoint(event.pos):
-                    pass
-                elif restart_rectangle.collidepoint(event.pos):
-                    # Source: stack overflow - https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input
-                    subprocess.call(sys.executable + ' "' + os.path.realpath(__file__) + '"')
-                    pygame.quit()
-                elif exit_rectangle.collidepoint(event.pos):
-                    pygame.quit()
-                    sys.exit()
-        pygame.display.update()
-
 def game_end(sudoku):
     title_font = pygame.font.SysFont("arialblack", 50)
     button_font = pygame.font.SysFont("arialblack", 25)
@@ -187,6 +135,40 @@ def main():
                     cell.draw()
 
 
+            # initialize buttons and button font
+            button_font = pygame.font.SysFont("arialblack", 25)
+            reset_button = button_font.render("RESET", 0, (0, 0, 0))
+            restart_button = button_font.render("RESTART", 0, (0, 0, 0))
+            exit_button = button_font.render("EXIT", 0, (0, 0, 0))
+
+            reset_surface = pygame.Surface((reset_button.get_size()[0] + 20,
+                                            reset_button.get_size()[1] + 20))
+            reset_surface.fill((204, 216, 217))
+            reset_surface.blit(reset_button, (10, 10))
+
+            restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
+                                              restart_button.get_size()[1] + 20))
+            restart_surface.fill((204, 216, 217))
+            restart_surface.blit(restart_button, (10, 10))
+
+            exit_surface = pygame.Surface((exit_button.get_size()[0] + 20,
+                                           exit_button.get_size()[1] + 20))
+            exit_surface.fill((204, 216, 217))
+            exit_surface.blit(exit_button, (10, 10))
+
+            # create button backgrounds
+            reset_rectangle = reset_surface.get_rect(
+                center=(220, 760))
+            restart_rectangle = restart_surface.get_rect(
+                center=(360, 760))
+            exit_rectangle = exit_surface.get_rect(
+                center=(500, 760))
+
+            screen.blit(reset_surface, reset_rectangle)
+            screen.blit(restart_surface, restart_rectangle)
+            screen.blit(exit_surface, exit_rectangle)
+
+
         while True:
             #draw_progress_menu()
             for event in pygame.event.get():
@@ -195,16 +177,29 @@ def main():
                     sys.exit()
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    # x, y = event.pos
-                    # pos = sudoku.click(x,y)
-                    # sudoku.select(pos[0], pos[1])
-                    # while pos[0] == sudoku.selected_y and pos[1] == sudoku.selected_x:
-                    #     if pos != None:
-                    #         sudoku.draw_square(pos[0], pos[1])
-                    #         continue
+                    x, y = event.pos
+                    pos = sudoku.click(x,y)
+                    sudoku.select(pos[0], pos[1])
+                    sudoku.draw()
+                    for row in range(9):
+                        for col in range(9):
+                            value = str(sudoku.board[row][col])
+                            if value != '0':
+                                cell = Cell(value, row, col, screen)
+                                cell.draw()
 
+                    if pos != None:
+                         sudoku.draw_square(pos[0], pos[1])
+                    elif reset_rectangle.collidepoint(event.pos):
+                        pass
+                    elif restart_rectangle.collidepoint(event.pos):
+                        # Source: stack overflow - https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input
+                        subprocess.call(sys.executable + ' "' + os.path.realpath(__file__) + '"')
+                        pygame.quit()
 
-
+                    elif exit_rectangle.collidepoint(event.pos):
+                        pygame.quit()
+                        sys.exit()
 
             pygame.display.update()
 
