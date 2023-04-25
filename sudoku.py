@@ -121,7 +121,7 @@ def main():
     while(game_loop):
         # starting menu screen
         difficulty = start_menu(screen)
-
+        sketch = None
 
         #main playing screen
         screen.fill((191, 222, 217))
@@ -197,6 +197,34 @@ def main():
                         if exit_rectangle.collidepoint(event.pos):
                             pygame.quit()
                             sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_1:
+                        sketch = 1
+                    if event.key == pygame.K_2:
+                        sketch = 2
+                    if event.key == pygame.K_3:
+                        sketch = 3
+                    if event.key == pygame.K_4:
+                        sketch = 4
+                    if event.key == pygame.K_5:
+                        sketch = 5
+                    if event.key == pygame.K_6:
+                        sketch = 6
+                    if event.key == pygame.K_7:
+                        sketch = 7
+                    if event.key == pygame.K_8:
+                        sketch = 8
+                    if event.key == pygame.K_9:
+                        sketch = 9
+                    if event.key == pygame.K_DELETE:
+                        if sudoku.original[pos[0]][pos[1]] == 0:
+                            sudoku.board[pos[0]][pos[1]] = 0
+                            sudoku.draw()
+
+            if sketch != None and sudoku.board[pos[0]][pos[1]] == 0:
+                sudoku.sketch(sketch)
+
+
 
             pygame.display.update()
 
