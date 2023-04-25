@@ -1,6 +1,7 @@
 import pygame
 
 class Cell:
+
     def __init__(self, value, row, col, screen):
         self.value = value
         self.row = row
@@ -14,5 +15,11 @@ class Cell:
         pass
 
     def draw(self):
-        num_font = pygame.font.Font(None, 20)
+
+        number_font = pygame.font.Font(None, 20)
+        num_surface = number_font.render(str(self.value), 0, "black")
+        num_rect = num_surface.get_rect(center =((self.row * 80) + 40,
+                                                (self.col * 80) + 40))
+        self.screen.blit(num_surface, num_rect)
+
 

@@ -1,5 +1,7 @@
 import pygame, sys
 from board import Board
+from sudoku_generator import SudokuGenerator
+from cell import Cell
 pygame.init()
 screen = pygame.display.set_mode((720, 800))
 
@@ -69,10 +71,26 @@ def start_menu(screen):
                     return 50 # Returns 50 for Hard
         pygame.display.update()
 
-
-
-
 difficulty = start_menu(screen)
+sudoku = SudokuGenerator(9, difficulty)
+sudoku.fill_values()
+board = sudoku.get_board()
+sudoku.remove_cells()
+board = sudoku.get_board()
+sudoku.print_board()
+
+for i in range(9):
+    for j in range(9):
+        value = board[i][j]
+        cell = Cell(value, i, j, screen)
+        cell.draw
+
+
+
+
+
+
+
 
 
 
