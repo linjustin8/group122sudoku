@@ -36,7 +36,11 @@ class Board:
         pass
 
     def click(self, x, y):
-        pass
+        row = y // 80
+        col = x // 80
+        if(row>9):
+            return None
+        return (row, col)
 
     def clear(self):
         pass
@@ -61,4 +65,6 @@ class Board:
 
     def check_board(self):
         pass
+
+
 

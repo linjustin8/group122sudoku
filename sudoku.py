@@ -3,6 +3,9 @@ from board import Board
 pygame.init()
 screen = pygame.display.set_mode((720, 800))
 
+square_size = 80
+
+
 # Print Title
 def draw_text(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
@@ -84,5 +87,9 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            x, y = event.pos
+            print(Board.click(x, y))
 
     pygame.display.update()

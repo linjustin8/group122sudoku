@@ -1,19 +1,18 @@
 import pygame
 
-pygame.init()
-
 class Cell:
     def __init__(self, value, row, col, screen):
         self.value = value
         self.row = row
         self.col = col
-        self.screen = pygame.display.set_mode(())
+        self.screen = screen
 
     def set_cell_value(self, value):
-        pass
+        self.value = value
 
     def set_sketched_value(self, value):
         pass
 
     def draw(self):
-        pass
+        num_font = pygame.font.Font(None, 20)
+
