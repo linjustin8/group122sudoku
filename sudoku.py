@@ -71,23 +71,36 @@ def start_menu(screen):
                     return 50 # Returns 50 for Hard
         pygame.display.update()
 
-difficulty = start_menu(screen)
+def in_progress_menu():
+    #initialize buttons and button font
+    button_font = pygame.font.SysFont("arialblack", 25)
+    reset_button = button_font.render("RESET", 0, (0, 0, 0))
+    restart_button = button_font.render("RESTART", 0, (0, 0, 0))
+    exit_button = button_font.render("EXIT", 0, (0, 0, 0))
+
+    #create button backgrounds
 
 
-screen.fill((191, 222, 217))
-sudoku = Board(720, 720, screen, difficulty) # change 0 for difficulty
-sudoku.draw()
-for row in range(9):
-    for col in range(9):
-        value = str(sudoku.board[row][col])
-        if value != '0':
-            cell = Cell(value, row, col, screen)
-            cell.draw()
+def game_end():
+    pass
 
 
 def main():
     game_over = False
 
+    #starting menu screen
+    difficulty = start_menu(screen)
+
+    #main playing screen
+    screen.fill((191, 222, 217))
+    sudoku = Board(720, 720, screen, difficulty)  # change 0 for difficulty
+    sudoku.draw()
+    for row in range(9):
+        for col in range(9):
+            value = str(sudoku.board[row][col])
+            if value != '0':
+                cell = Cell(value, row, col, screen)
+                cell.draw()
 
     while True:
         for event in pygame.event.get():
@@ -100,6 +113,7 @@ def main():
                 print(sudoku.click(x, y))
 
         pygame.display.update()
+
 
 
 if __name__ == "__main__":
