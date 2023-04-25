@@ -79,11 +79,6 @@ sudoku.remove_cells()
 board = sudoku.get_board()
 sudoku.print_board()
 
-for i in range(9):
-    for j in range(9):
-        value = board[i][j]
-        cell = Cell(value, i, j, screen)
-        cell.draw
 
 
 
@@ -97,7 +92,12 @@ for i in range(9):
 screen.fill((191, 222, 217))
 sudoku_board = Board(720, 720, screen, difficulty) # change 0 for difficulty
 sudoku_board.draw()
-
+for row in range(9):
+    for col in range(9):
+        value = str(board[row][col])
+        if value != '0':
+            cell = Cell(value, row, col, screen)
+            cell.draw()
 while True:
 
     for event in pygame.event.get():
