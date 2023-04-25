@@ -1,10 +1,16 @@
 import pygame
+from cell import Cell
+from sudoku_generator import generate_sudoku
+
 class Board:
     def __init__(self, width, height, screen, difficulty):
         self.screen = screen
         self.width = width
         self.height = height
         self.difficulty = difficulty
+        self.board = generate_sudoku(9, difficulty)
+        self.cells = [[Cell(self.board[i][j], i, j, screen) for j in range(9)]for i in range(9)]
+
     def draw(self):
         # draw horizontal lines
         for i in range(1, 10):

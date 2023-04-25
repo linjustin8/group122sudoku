@@ -98,22 +98,23 @@ for row in range(9):
         if value != '0':
             cell = Cell(value, row, col, screen)
             cell.draw()
-while True:
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            x, y = event.pos
-            print(sudoku_board.click(x, y))
-
-
-    pygame.display.update()
 
 def main():
-    pass
+    game_over = False
+
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = event.pos
+                print(sudoku_board.click(x, y))
+
+        pygame.display.update()
 
 
 if __name__ == "__main__":
