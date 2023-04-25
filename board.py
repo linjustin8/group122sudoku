@@ -9,8 +9,10 @@ class Board:
         self.width = width
         self.height = height
         self.difficulty = difficulty
+        self.boardy = SudokuGenerator(9,0)
         self.board = generate_sudoku(9, difficulty)
-        self.original = self.board
+        self.boardy.board = self.board
+        self.original = [[self.board[i][j] for j in range(9)]for i in range(9)]
         self.cells = [[Cell(self.board[i][j], i, j, screen) for j in range(9)]for i in range(9)]
         self.selected_x = -1
         self.selected_y = -1
@@ -49,6 +51,7 @@ class Board:
                     cell = Cell(value, row, col, self.screen)
                     cell.draw()
         pygame.draw.rect(self.screen, (255, 0, 0), (self.selected_y * 80, self.selected_x * 80, 80, 80), 5)
+        return 1
 
     def select(self, row, col):
         self.selected_x = row
