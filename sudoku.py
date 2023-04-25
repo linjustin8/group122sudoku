@@ -5,14 +5,12 @@ from cell import Cell
 pygame.init()
 screen = pygame.display.set_mode((720, 800))
 
-square_size = 80
-
-
 # Print Title
 def draw_text(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
     screen.blit(img, (x, y))
     return img
+
 def start_menu(screen):
     # Initialize title font
     title_font = pygame.font.SysFont("arialblack", 40)
@@ -71,15 +69,55 @@ def start_menu(screen):
                     return 50 # Returns 50 for Hard
         pygame.display.update()
 
-def in_progress_menu():
+def draw_progress_menu():
     #initialize buttons and button font
     button_font = pygame.font.SysFont("arialblack", 25)
     reset_button = button_font.render("RESET", 0, (0, 0, 0))
     restart_button = button_font.render("RESTART", 0, (0, 0, 0))
     exit_button = button_font.render("EXIT", 0, (0, 0, 0))
 
-    #create button backgrounds
+    reset_surface = pygame.Surface((reset_button.get_size()[0] + 20,
+                                   reset_button.get_size()[1] + 20))
+    reset_surface.fill((204, 216, 217))
+    reset_surface.blit(reset_button, (10, 10))
 
+    restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
+                                     restart_button.get_size()[1] + 20))
+    restart_surface.fill((204, 216, 217))
+    restart_surface.blit(restart_button, (10, 10))
+
+    exit_surface = pygame.Surface((exit_button.get_size()[0] + 20,
+                                   exit_button.get_size()[1] + 20))
+    exit_surface.fill((204, 216, 217))
+    exit_surface.blit(exit_button, (10, 10))
+
+    #create button backgrounds
+    reset_rectangle = reset_surface.get_rect(
+        center=(220, 500))
+    restart_rectangle = restart_surface.get_rect(
+        center=(360, 500))
+    exit_rectangle = exit_surface.get_rect(
+        center=(500, 500))
+
+    screen.blit(reset_surface, reset_rectangle)
+    screen.blit(restart_surface, restart_rectangle)
+    screen.blit(exit_surface, exit_rectangle)
+
+    #button operations
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if reset_rectangle.collidepoint(event.pos):
+                    pass
+                elif restart_rectangle.collidepoint(event.pos):
+                    game_loop = True
+                elif exit_rectangle.collidepoint(event.pos):
+                    pygame.quit()
+                    sys.exit()
+        pygame.display.update()
 
 def game_end():
     pass
@@ -87,32 +125,38 @@ def game_end():
 
 def main():
     game_over = False
+    game_loop = True
 
-    #starting menu screen
-    difficulty = start_menu(screen)
 
-    #main playing screen
-    screen.fill((191, 222, 217))
-    sudoku = Board(720, 720, screen, difficulty)  # change 0 for difficulty
-    sudoku.draw()
-    for row in range(9):
-        for col in range(9):
-            value = str(sudoku.board[row][col])
-            if value != '0':
-                cell = Cell(value, row, col, screen)
-                cell.draw()
 
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+    while(game_loop):
+        # starting menu screen
+        difficulty = start_menu(screen)
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                x, y = event.pos
-                print(sudoku.click(x, y))
 
-        pygame.display.update()
+        #main playing screen
+        screen.fill((191, 222, 217))
+        sudoku = Board(720, 720, screen, difficulty)  # change 0 for difficulty
+        sudoku.draw()
+        for row in range(9):
+            for col in range(9):
+                value = str(sudoku.board[row][col])
+                if value != '0':
+                    cell = Cell(value, row, col, screen)
+                    cell.draw()
+
+        draw_progress_menu()
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    x, y = event.pos
+                    print(x, y)
+
+            pygame.display.update()
 
 
 
