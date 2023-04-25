@@ -167,8 +167,8 @@ class SudokuGenerator:
 	Return: None
     '''
     def fill_diagonal(self):
+        placement = 0
         for i in range(3):
-            placement = 0
             not_valid = True
             while (not_valid):
                 insert = random.randint(1, 9)
@@ -242,9 +242,9 @@ class SudokuGenerator:
 	Return: None
     '''
     def remove_cells(self):
-        remove_x = random.randint(0,9)
-        remove_y= random.randint(0,9)
         while True:
+            remove_x = random.randint(0, 9)
+            remove_y = random.randint(0, 9)
             if(self.board[remove_x][remove_y]==0):
                 continue
             else:
