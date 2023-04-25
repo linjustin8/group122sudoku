@@ -72,29 +72,14 @@ def start_menu(screen):
         pygame.display.update()
 
 difficulty = start_menu(screen)
-sudoku = SudokuGenerator(9, difficulty)
-sudoku.fill_values()
-board = sudoku.get_board()
-sudoku.remove_cells()
-board = sudoku.get_board()
-sudoku.print_board()
-
-
-
-
-
-
-
-
-
 
 
 screen.fill((191, 222, 217))
-sudoku_board = Board(720, 720, screen, difficulty) # change 0 for difficulty
-sudoku_board.draw()
+sudoku = Board(720, 720, screen, difficulty) # change 0 for difficulty
+sudoku.draw()
 for row in range(9):
     for col in range(9):
-        value = str(board[row][col])
+        value = str(sudoku.board[row][col])
         if value != '0':
             cell = Cell(value, row, col, screen)
             cell.draw()
@@ -112,7 +97,7 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
-                print(sudoku_board.click(x, y))
+                print(sudoku.click(x, y))
 
         pygame.display.update()
 

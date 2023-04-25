@@ -128,11 +128,11 @@ class SudokuGenerator:
         else:
             start_col = 6
 
-        if not (self.valid_in_row(row, num)) :
+        if not (self.valid_in_row(row, num)):
             return False
-        elif not (self.valid_in_col(col, num)) :
+        elif not (self.valid_in_col(col, num)):
             return False
-        elif not (self.valid_in_box(start_row, start_col, num)) :
+        elif not (self.valid_in_box(start_row, start_col, num)):
             return False
         else:
             return True
