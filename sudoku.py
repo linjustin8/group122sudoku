@@ -74,6 +74,7 @@ def game_end(sudoku):
     button_font = pygame.font.SysFont("arialblack", 25)
 
     if(sudoku.is_full()):
+        screen.fill((191, 222, 217))
         if(sudoku.check_board()):#if won sudoku game
             draw_text("Game Won!", title_font, (0, 0, 0), 150, 100)
             exit_button = button_font.render("EXIT", 0, (0, 0, 0))
