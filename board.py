@@ -103,10 +103,12 @@ class Board:
 
     def check_board(self):
         check = SudokuGenerator(9,0)
-        check.board = self.board
+        check.board = [[self.board[i][j] for j in range(9)]for i in range(9)]
         for i in range(9):
             for j in range(9):
-                if not check.is_valid(i, j, check.board[i][j]):
+                if check.is_valid(i, j, check.board[i][j]):
+                    continue
+                else:
                     return False
         return True
 

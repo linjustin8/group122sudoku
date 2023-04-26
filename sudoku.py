@@ -62,7 +62,7 @@ def start_menu(screen):
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rectangle.collidepoint(event.pos):
-                    return 30 # Returns 30 for Easy
+                    return 1 # Returns 30 for Easy
                 elif medium_rectangle.collidepoint(event.pos):
                     return 40 # Returns 40 For Medium
                 elif hard_rectangle.collidepoint(event.pos):
@@ -283,8 +283,8 @@ def main():
                 screen.blit(exit_surface, exit_rectangle)
 
 
-                if sudoku.is_full() == True:
-                    game_end(sudoku)
+
+                game_end(sudoku)
 
 
 
