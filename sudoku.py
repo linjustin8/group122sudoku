@@ -72,7 +72,7 @@ def start_menu(screen):
 def game_end(sudoku):
     title_font = pygame.font.SysFont("arialblack", 50)
     button_font = pygame.font.SysFont("arialblack", 25)
-    screen.fill((191, 222, 217))
+
     if(sudoku.is_full()):
         if(sudoku.check_board()):#if won sudoku game
             draw_text("Game Won!", title_font, (0, 0, 0), 150, 100)
