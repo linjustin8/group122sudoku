@@ -279,6 +279,7 @@ def main():
                 screen.blit(reset_surface, reset_rectangle)
                 screen.blit(restart_surface, restart_rectangle)
                 screen.blit(exit_surface, exit_rectangle)
+                sudoku.update_board()
 
                 if sudoku.if_full() == True:
                     result = sudoku.check_board()
