@@ -112,7 +112,6 @@ def game_end(sudoku):
                 pygame.display.update()
 
 def main():
-    game_over = False
     game_loop = True
 
     # initialize buttons and button font
@@ -266,24 +265,26 @@ def main():
                         sketch = 9
                         if sudoku.board[pos[0]][pos[1]] == 0:
                             sudoku.sketch(sketch)
-                    if event.key == pygame.K_DELETE:
+                    if event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE:
                         if sudoku.original[pos[0]][pos[1]] == 0:
                             sudoku.clear()
                             sudoku.draw()
-                    if event.key == pygame.K_RETURN:
+                            sudoku.update_board()
+                    if event.key == pygame.K_RETURN :
                         if sudoku.board[pos[0]][pos[1]] == 0:
                             sudoku.place_number(sketch)
                             sudoku.draw()
                             sudoku.board[pos[0]][pos[1]] = sketch
+                            sudoku.update_board()
+
 
                 screen.blit(reset_surface, reset_rectangle)
                 screen.blit(restart_surface, restart_rectangle)
                 screen.blit(exit_surface, exit_rectangle)
-                sudoku.update_board()
 
-                if sudoku.if_full() == True:
-                    result = sudoku.check_board()
-                    print(result)
+
+                if sudoku.is_full() == True:
+                    game_end(sudoku)
 
 
 
