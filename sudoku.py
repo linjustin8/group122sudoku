@@ -72,16 +72,19 @@ def start_menu(screen):
 def game_end(sudoku):
     title_font = pygame.font.SysFont("arialblack", 50)
     button_font = pygame.font.SysFont("arialblack", 25)
+    screen.fill((191, 222, 217))
     if(sudoku.is_full()):
         if(sudoku.check_board()):#if won sudoku game
             draw_text("Game Won!", title_font, (0, 0, 0), 150, 100)
             exit_button = button_font.render("EXIT", 0, (0, 0, 0))
             exit_surface = pygame.Surface((exit_button.get_size()[0] + 20,
                                            exit_button.get_size()[1] + 20))
+
             exit_surface.fill((204, 216, 217))
             exit_surface.blit(exit_button, (10, 10))
             exit_rectangle = exit_surface.get_rect(
-                center=(360, 500))
+                center=(360, 360))
+            screen.blit(exit_surface, exit_rectangle)
             while True:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -95,12 +98,17 @@ def game_end(sudoku):
         else:#if lost sudoku game
             draw_text("Game Over!", title_font, (0, 0, 0), 150, 100)
             restart_button = button_font.render("RESTART", 0, (0, 0, 0))
+
             restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
                                               restart_button.get_size()[1] + 20))
             restart_surface.fill((204, 216, 217))
+
             restart_surface.blit(restart_button, (10, 10))
             restart_rectangle = restart_surface.get_rect(
-                center=(360, 760))
+                center=(360, 360))
+            screen.blit(restart_surface, restart_rectangle)
+
+
             while True:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -108,7 +116,8 @@ def game_end(sudoku):
                         sys.exit()
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if restart_rectangle.collidepoint(event.pos):
-                            pass
+                            subprocess.call(sys.executable + ' "' + os.path.realpath(__file__) + '"')
+                            pygame.quit()
                 pygame.display.update()
 
 def main():
@@ -142,6 +151,7 @@ def main():
         center=(360, 760))
     exit_rectangle = exit_surface.get_rect(
         center=(500, 760))
+
 
     while(game_loop):
         # starting menu screen
@@ -266,12 +276,12 @@ def main():
                         if sudoku.board[pos[0]][pos[1]] == 0:
                             sudoku.sketch(sketch)
                     if event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE:
-                        if sudoku.original[pos[0]][pos[1]] == 0:
+                        if sudoku.board[pos[0]][pos[1]] == 0:
                             sudoku.clear()
                             sudoku.draw()
                             sudoku.update_board()
                     if event.key == pygame.K_RETURN :
-                        if sudoku.board[pos[0]][pos[1]] == 0:
+                        if sudoku.original[pos[0]][pos[1]] == 0:
                             sudoku.place_number(sketch)
                             sudoku.draw()
                             sudoku.board[pos[0]][pos[1]] = sketch
