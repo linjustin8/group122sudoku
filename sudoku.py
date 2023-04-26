@@ -111,12 +111,38 @@ def game_end(sudoku):
                             pass
                 pygame.display.update()
 
-
 def main():
     game_over = False
     game_loop = True
 
+    # initialize buttons and button font
+    button_font = pygame.font.SysFont("arialblack", 25)
+    reset_button = button_font.render("RESET", 0, (0, 0, 0))
+    restart_button = button_font.render("RESTART", 0, (0, 0, 0))
+    exit_button = button_font.render("EXIT", 0, (0, 0, 0))
 
+    reset_surface = pygame.Surface((reset_button.get_size()[0] + 20,
+                                    reset_button.get_size()[1] + 20))
+    reset_surface.fill((204, 216, 217))
+    reset_surface.blit(reset_button, (10, 10))
+
+    restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
+                                      restart_button.get_size()[1] + 20))
+    restart_surface.fill((204, 216, 217))
+    restart_surface.blit(restart_button, (10, 10))
+
+    exit_surface = pygame.Surface((exit_button.get_size()[0] + 20,
+                                   exit_button.get_size()[1] + 20))
+    exit_surface.fill((204, 216, 217))
+    exit_surface.blit(exit_button, (10, 10))
+
+    # create button backgrounds
+    reset_rectangle = reset_surface.get_rect(
+        center=(220, 760))
+    restart_rectangle = restart_surface.get_rect(
+        center=(360, 760))
+    exit_rectangle = exit_surface.get_rect(
+        center=(500, 760))
 
     while(game_loop):
         # starting menu screen
@@ -127,46 +153,12 @@ def main():
         screen.fill((191, 222, 217))
         sudoku = Board(720, 720, screen, difficulty)  # change 0 for difficulty
         sudoku.draw()
-        for row in range(9):
-            for col in range(9):
-                value = str(sudoku.board[row][col])
-                if value != '0':
-                    cell = Cell(value, row, col, screen)
-                    cell.draw()
 
 
-            # initialize buttons and button font
-            button_font = pygame.font.SysFont("arialblack", 25)
-            reset_button = button_font.render("RESET", 0, (0, 0, 0))
-            restart_button = button_font.render("RESTART", 0, (0, 0, 0))
-            exit_button = button_font.render("EXIT", 0, (0, 0, 0))
 
-            reset_surface = pygame.Surface((reset_button.get_size()[0] + 20,
-                                            reset_button.get_size()[1] + 20))
-            reset_surface.fill((204, 216, 217))
-            reset_surface.blit(reset_button, (10, 10))
-
-            restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
-                                              restart_button.get_size()[1] + 20))
-            restart_surface.fill((204, 216, 217))
-            restart_surface.blit(restart_button, (10, 10))
-
-            exit_surface = pygame.Surface((exit_button.get_size()[0] + 20,
-                                           exit_button.get_size()[1] + 20))
-            exit_surface.fill((204, 216, 217))
-            exit_surface.blit(exit_button, (10, 10))
-
-            # create button backgrounds
-            reset_rectangle = reset_surface.get_rect(
-                center=(220, 760))
-            restart_rectangle = restart_surface.get_rect(
-                center=(360, 760))
-            exit_rectangle = exit_surface.get_rect(
-                center=(500, 760))
-
-            screen.blit(reset_surface, reset_rectangle)
-            screen.blit(restart_surface, restart_rectangle)
-            screen.blit(exit_surface, exit_rectangle)
+        screen.blit(reset_surface, reset_rectangle)
+        screen.blit(restart_surface, restart_rectangle)
+        screen.blit(exit_surface, exit_rectangle)
 
 
         while True:
@@ -208,29 +200,54 @@ def main():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_1:
                         sketch = 1
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_2:
                         sketch = 2
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_3:
                         sketch = 3
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_4:
                         sketch = 4
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_5:
                         sketch = 5
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_6:
                         sketch = 6
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_7:
                         sketch = 7
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_8:
                         sketch = 8
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_9:
                         sketch = 9
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.sketch(sketch)
                     if event.key == pygame.K_DELETE:
                         if sudoku.original[pos[0]][pos[1]] == 0:
-                            sudoku.board[pos[0]][pos[1]] = 0
+                            sudoku.clear()
+                            sudoku.draw()
+                    if event.key == pygame.K_RETURN:
+                        if sudoku.board[pos[0]][pos[1]] == 0:
+                            sudoku.place_number(sketch)
                             sudoku.draw()
 
-            if sketch != None and sudoku.board[pos[0]][pos[1]] == 0:
-                sudoku.sketch(sketch)
+
+
+                screen.blit(reset_surface, reset_rectangle)
+                screen.blit(restart_surface, restart_rectangle)
+                screen.blit(exit_surface, exit_rectangle)
 
 
 

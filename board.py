@@ -47,9 +47,8 @@ class Board:
         for row in range(9):
             for col in range(9):
                 value = str(self.board[row][col])
-                if value != '0':
-                    cell = Cell(value, row, col, self.screen)
-                    cell.draw()
+                self.cells[row][col].draw()
+
         pygame.draw.rect(self.screen, (255, 0, 0), (self.selected_y * 80, self.selected_x * 80, 80, 80), 5)
         return 1
 
@@ -67,10 +66,12 @@ class Board:
         return (row, col)
 
     def clear(self):
-        self.cells[self.selected_x][self.selected_y].set_cell_value(0)
+        self.cells[self.selected_x][self.selected_y].set_cell_value('0')
+        self.cells[self.selected_x][self.selected_y].set_sketched_value('0')
+
 
     def sketch(self, value):
-        self.cells[self.selected_x][self.selected_y].set_sketched_value(value)
+        self.cells[self.selected_x][self.selected_y].set_sketched_value(str(value))
 
     def place_number(self, value):
         self.cells[self.selected_x][self.selected_y].set_cell_value(value)
