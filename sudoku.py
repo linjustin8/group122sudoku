@@ -198,6 +198,38 @@ def main():
                             pygame.quit()
                             sys.exit()
                 if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:
+                        x = x-80
+                        pos = sudoku.click(x, y)
+                        sudoku.select(pos[0], pos[1])
+                        sudoku.draw()
+                        screen.blit(reset_surface, reset_rectangle)
+                        screen.blit(restart_surface, restart_rectangle)
+                        screen.blit(exit_surface, exit_rectangle)
+                    if event.key == pygame.K_RIGHT:
+                        x += 80
+                        pos = sudoku.click(x, y)
+                        sudoku.select(pos[0], pos[1])
+                        sudoku.draw()
+                        screen.blit(reset_surface, reset_rectangle)
+                        screen.blit(restart_surface, restart_rectangle)
+                        screen.blit(exit_surface, exit_rectangle)
+                    if event.key == pygame.K_UP:
+                        y -= 80
+                        pos = sudoku.click(x, y)
+                        sudoku.select(pos[0], pos[1])
+                        sudoku.draw()
+                        screen.blit(reset_surface, reset_rectangle)
+                        screen.blit(restart_surface, restart_rectangle)
+                        screen.blit(exit_surface, exit_rectangle)
+                    if event.key == pygame.K_DOWN:
+                        y += 80
+                        pos = sudoku.click(x, y)
+                        sudoku.select(pos[0], pos[1])
+                        sudoku.draw()
+                        screen.blit(reset_surface, reset_rectangle)
+                        screen.blit(restart_surface, restart_rectangle)
+                        screen.blit(exit_surface, exit_rectangle)
                     if event.key == pygame.K_1:
                         sketch = 1
                         if sudoku.board[pos[0]][pos[1]] == 0:
@@ -242,13 +274,15 @@ def main():
                         if sudoku.board[pos[0]][pos[1]] == 0:
                             sudoku.place_number(sketch)
                             sudoku.draw()
-
-
+                            sudoku.board[pos[0]][pos[1]] = sketch
 
                 screen.blit(reset_surface, reset_rectangle)
                 screen.blit(restart_surface, restart_rectangle)
                 screen.blit(exit_surface, exit_rectangle)
 
+                if sudoku.if_full() == True:
+                    result = sudoku.check_board()
+                    print(result)
 
 
 

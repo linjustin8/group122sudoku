@@ -101,18 +101,11 @@ class Board:
         return None
 
     def check_board(self):
-        test = SudokuGenerator(9, 0)
-        test.board = self.board
-
+        check = SudokuGenerator(9,0)
+        check.board = self.board
         for i in range(9):
             for j in range(9):
-                if not test.is_valid(i, j, self.board[i][j]) or self.board[i][j] == 0:
+                if not check.is_valid(i, j, check.board[i][j]):
                     return False
         return True
-
-    def draw_square(self, row, col):
-        # fnt = pygame.font.SysFont("arial", 40)
-        pygame.draw.rect(self.screen, (255, 0, 0), (col * 80, row * 80, 80, 80), 5 )
-
-
 
