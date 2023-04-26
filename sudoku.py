@@ -96,7 +96,7 @@ def game_end(sudoku):
                             sys.exit()
                 pygame.display.update()
         else:#if lost sudoku game
-            draw_text("Game Over!", title_font, (0, 0, 0), 150, 100)
+            draw_text("Game Over!", title_font, (0, 0, 0), 200, 100)
             restart_button = button_font.render("RESTART", 0, (0, 0, 0))
 
             restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
@@ -276,10 +276,10 @@ def main():
                         if sudoku.board[pos[0]][pos[1]] == 0:
                             sudoku.sketch(sketch)
                     if event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE:
-                        if sudoku.board[pos[0]][pos[1]] == 0:
+                        if sudoku.board[pos[0]][pos[1]] != 0:
                             sudoku.clear()
                             sudoku.draw()
-                            sudoku.update_board()
+
                     if event.key == pygame.K_RETURN :
                         if sudoku.original[pos[0]][pos[1]] == 0:
                             sudoku.place_number(sketch)
@@ -293,8 +293,8 @@ def main():
                 screen.blit(exit_surface, exit_rectangle)
 
 
-
-                game_end(sudoku)
+                if(sudoku.is_full()):
+                    game_end(sudoku)
 
 
 
