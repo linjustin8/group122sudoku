@@ -276,10 +276,10 @@ def main():
                         if sudoku.board[pos[0]][pos[1]] == 0:
                             sudoku.sketch(sketch)
                     if event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE:
-                        if sudoku.board[pos[0]][pos[1]] == 0:
-                            sudoku.clear()
-                            sudoku.draw()
-                            sudoku.update_board()
+                        sudoku.board[pos[0]][pos[1]] = 0
+                        sudoku.clear()
+                        sudoku.draw()
+                        sudoku.update_board()
                     if event.key == pygame.K_RETURN :
                         if sudoku.original[pos[0]][pos[1]] == 0:
                             sudoku.place_number(sketch)
