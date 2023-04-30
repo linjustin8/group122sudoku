@@ -75,7 +75,8 @@ def game_end(sudoku):
 
     if(sudoku.if_full()):
         if(sudoku.check_board()):#if won sudoku game
-            draw_text("Game Won!", title_font, (0, 0, 0), 150, 100)
+            screen.fill((191, 222, 217))
+            draw_text("Game Won!", title_font, (0, 0, 0), 200, 100)
             exit_button = button_font.render("EXIT", 0, (0, 0, 0))
             exit_surface = pygame.Surface((exit_button.get_size()[0] + 20,
                                            exit_button.get_size()[1] + 20))
@@ -96,7 +97,8 @@ def game_end(sudoku):
                             sys.exit()
                 pygame.display.update()
         else:#if lost sudoku game
-            draw_text("Game Over!", title_font, (0, 0, 0), 150, 100)
+            screen.fill((191, 222, 217))
+            draw_text("Game Over!", title_font, (0, 0, 0), 200, 100)
             restart_button = button_font.render("RESTART", 0, (0, 0, 0))
 
             restart_surface = pygame.Surface((restart_button.get_size()[0] + 20,
