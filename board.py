@@ -68,7 +68,6 @@ class Board:
     def clear(self):
         self.cells[self.selected_x][self.selected_y].set_cell_value('0')
         self.cells[self.selected_x][self.selected_y].set_sketched_value('0')
-        self.update_board()
 
 
     def sketch(self, value):
@@ -80,7 +79,7 @@ class Board:
     def reset_to_original(self):
         self.cells = [[Cell(self.original[i][j], i, j, self.screen) for j in range(9)]for i in range(9)]
 
-    def is_full(self):
+    def if_full(self):
         for i in range(9):
             for j in range(9):
                 if(self.cells[i][j].value == 0):
@@ -103,12 +102,9 @@ class Board:
 
     def check_board(self):
         check = SudokuGenerator(9,0)
-        check.board = [[self.board[i][j] for j in range(9)]for i in range(9)]
+        check.board = self.board
         for i in range(9):
             for j in range(9):
-                if check.is_valid(i, j, check.board[i][j]):
-                    continue
-                else:
+                if not check.is_valid(i, j, check.board[i][j]):
                     return False
         return True
-
